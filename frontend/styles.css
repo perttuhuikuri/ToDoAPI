@@ -1,0 +1,103 @@
+/* General Body Styling */
+body {
+    font-family: Arial, sans-serif;
+    margin: 20px;
+    background-color: #f9f9f9;
+    color: #333;
+    text-align: center; /* Center-align text for the entire body */
+}
+
+/* Header */
+h1 {
+    color: #0078d4;
+    margin-bottom: 20px;
+}
+
+/* Add To-Do Section */
+h3 {
+    color: #333;
+    margin-bottom: 10px;
+}
+
+.add-todo-container {
+    display: flex;
+    justify-content: center; /* Center the container */
+    align-items: center; /* Align items vertically */
+    gap: 10px; /* Add spacing between the input and button */
+    margin-bottom: 20px; /* Add spacing below the input section */
+}
+
+#task {
+    padding: 10px;
+    width: 300px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    outline: none;
+}
+
+#task:focus {
+    border-color: #0078d4;
+    box-shadow: 0 0 5px #0078d4;
+}
+
+button {
+    padding: 10px 15px;
+    background-color: #0078d4;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+button:hover {
+    background-color: #005a9e;
+}
+
+/* To-Do List */
+#todo-list {
+    margin-top: 20px;
+    text-align: left; /* Keep list aligned to the left */
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.todo-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #fff;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 10px;
+    margin-bottom: 10px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.todo-item span {
+    flex: 1;
+}
+
+.todo-item .button {
+    margin-left: 10px;
+    padding: 5px 10px;
+    background-color: #d9534f;
+    border: none;
+    color: #fff;
+    border-radius: 3px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.todo-item .button:hover {
+    background-color: #c9302c;
+}
+
+.todo-item .button:last-child {
+    background-color: #5cb85c;
+}
+
+.todo-item .button:last-child:hover {
+    background-color: #4cae4c;
+}
