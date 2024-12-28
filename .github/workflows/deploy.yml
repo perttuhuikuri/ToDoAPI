@@ -17,7 +17,10 @@ jobs:
           mkdir -p ./docs
             echo "const apiBase = '${{ secrets.API_BASE }}';" > ./docs/config.js
             echo "Contents of config.js:"
-            cat ./docs/config.js
+            cat ./docs/config.js'
+
+      - name: Debug API base secret
+        run: echo "${{ secrets.API_BASE }}"
 
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v3
