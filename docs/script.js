@@ -1,8 +1,4 @@
-const apiBase = typeof window.apiBase !== "undefined"
-    ? window.apiBase
-    : "https://todoapifunction.azurewebsites.net/api/ToDoFunction";
-
-console.log("Using API Base:", apiBase);
+const apiBase = "https://todoapifunction.azurewebsites.net/api/ToDoFunction?code=w0fv9msxegHVOGCY4Rddi0v7xsQqu1t9G9dBxLE3iekvAzFuAHJ5Eg%3D%3D"
 
 // Fetch all to-do items
 async function fetchTodos() {
