@@ -15,8 +15,8 @@ jobs:
       - name: Inject API base into config.js
         run: |
           mkdir -p ./docs
-          echo "const apiBase = '${{ secrets.API_BASE }}';" > ./docs/config.example.js
-          ls -la ./docs # Debugging step to confirm file creation
+            echo "const apiBase = '${{ secrets.API_BASE }}';" > ./docs/config.js
+            ls -la ./docs # List files in the docs directory for debugging
 
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v3
