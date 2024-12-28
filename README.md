@@ -1,4 +1,3 @@
-
 # Serverless To-Do API with Azure Functions (Python)
 
 ## Description
@@ -116,4 +115,4 @@ Before running or deploying the project, ensure the following tools are installe
 
 ## License
 ## License
-This project is licensed under the MIT License - see the [LICENSE](./LICENSE) file for details.
+This project is licensed under the MIT License - see the [LICENSE](./LICENSE.txt) file for details.
