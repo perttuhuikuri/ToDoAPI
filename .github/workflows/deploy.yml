@@ -13,10 +13,10 @@ jobs:
         uses: actions/checkout@v2
 
       - name: Inject API base into config.js
-        run: echo "const apiBase = '${{ secrets.API_BASE }}';" > ./config.js
+        run: echo "const apiBase = '${{ secrets.API_BASE }}';" > .docs/config.js
 
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v3
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./
+          publish_dir: ./docs
