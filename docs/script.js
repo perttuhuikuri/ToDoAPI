@@ -1,4 +1,4 @@
-// Fetch all to-do items //
+// Fetch all to-do items
 async function fetchTodos() {
     const response = await fetch(apiBase);
     const todos = await response.json();
