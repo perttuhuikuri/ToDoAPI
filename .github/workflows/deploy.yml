@@ -8,22 +8,31 @@ on:
 jobs:
   deploy:
     runs-on: ubuntu-latest
+
     steps:
+      # Step 1: Checkout the repository
       - name: Checkout repository
         uses: actions/checkout@v2
 
+      # Step 2: Debug API base secret (temporary step for validation)
+      - name: Debug API base secret
+        run: |
+          echo "API_BASE is: ${{ secrets.API_BASE }}"
+
+      # Step 3: Inject API base into config.js
       - name: Inject API base into config.js
         run: |
           mkdir -p ./docs
-            echo "const apiBase = '${{ secrets.API_BASE }}';" > ./docs/config.js
-            echo "Contents of config.js:"
-            cat ./docs/config.js'
+          echo "const apiBase = '${{ secrets.API_BASE }}';" > ./docs/config.js
+          echo "Contents of config.js:"
+          cat ./docs/config.js
+          echo "Contents of docs directory:"
+          ls -la ./docs
 
-      - name: Debug API base secret
-        run: echo "${{ secrets.API_BASE }}"
-
+      # Step 4: Deploy to GitHub Pages
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v3
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: ./docs
+          force_orphan: true
