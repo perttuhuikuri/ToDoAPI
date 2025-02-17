@@ -114,5 +114,4 @@ Before running or deploying the project, ensure the following tools are installe
 - Write **unit tests** for API validation.
 
 ## License
-## License
 This project is licensed under the MIT License - see the [LICENSE](./LICENSE.txt) file for details.
