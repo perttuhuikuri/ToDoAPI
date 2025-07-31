@@ -1,4 +1,4 @@
-const apiBase = "https://todoapifunction.azurewebsites.net/api/ToDoFunction?code=w0fv9msxegHVOGCY4Rddi0v7xsQqu1t9G9dBxLE3iekvAzFuAHJ5Eg%3D%3D"
+const apiBase = "/api/ToDoFunction";
 
 // Fetch all to-do items
 async function fetchTodos() {
@@ -22,11 +22,13 @@ async function fetchTodos() {
 async function addTodo() {
     const task = document.getElementById("task").value;
     if (!task) return alert("Task cannot be empty");
+
     await fetch(apiBase, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ id: Date.now(), task, completed: false })
     });
+
     document.getElementById("task").value = ""; // Clear input
     fetchTodos(); // Refresh the list
 }
