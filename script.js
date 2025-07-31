@@ -1,11 +1,15 @@
-const apiBase = "/api/ToDoFunction";
+const apiBase = "https://todoapifunction.azurewebsites.net/api/ToDoFunction";
 
 // Fetch all to-do items
 async function fetchTodos() {
     const response = await fetch(apiBase);
+    if (!response.ok) {
+        console.error("Fetch failed:", response.status, await response.text());
+        return;
+    }
     const todos = await response.json();
     const todoList = document.getElementById("todo-list");
-    todoList.innerHTML = ""; // Clear the list
+    todoList.innerHTML = "";
     todos.forEach(todo => {
         const div = document.createElement("div");
         div.className = "todo-item";
@@ -29,8 +33,8 @@ async function addTodo() {
         body: JSON.stringify({ id: Date.now(), task, completed: false })
     });
 
-    document.getElementById("task").value = ""; // Clear input
-    fetchTodos(); // Refresh the list
+    document.getElementById("task").value = "";
+    fetchTodos();
 }
 
 // Delete a to-do
@@ -40,7 +44,7 @@ async function deleteTodo(id) {
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ id })
     });
-    fetchTodos(); // Refresh the list
+    fetchTodos();
 }
 
 // Mark a to-do as complete
@@ -55,7 +59,7 @@ async function markComplete(id) {
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ ...todo, completed: true })
     });
-    fetchTodos(); // Refresh the list
+    fetchTodos();
 }
 
 // Initial fetch
