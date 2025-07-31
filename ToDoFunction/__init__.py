@@ -1,35 +1,40 @@
 import logging
 import azure.functions as func
-import json
-import os
 import requests
+import os
+import json
 
-# Your proxy function
+API_URL = "https://todoapifunction.azurewebsites.net/api/ToDoFunction"
+API_KEY = os.environ.get("TODO_API_KEY")
+
 def main(req: func.HttpRequest) -> func.HttpResponse:
-    logging.info('Processing request through secure proxy.')
+    logging.info("Proxy request received.")
+
+    if not API_KEY:
+        logging.error("TODO_API_KEY environment variable is missing!")
+        return func.HttpResponse("Server misconfigured", status_code=500)
+
+    method = req.method
+    headers = {"x-functions-key": API_KEY}
 
     try:
-        method = req.method
-        body = req.get_json() if method in ["POST", "PUT", "DELETE"] else None
+        if method == "GET":
+            r = requests.get(API_URL, headers=headers)
+        elif method == "POST":
+            r = requests.post(API_URL, headers=headers, json=req.get_json())
+        elif method == "PUT":
+            r = requests.put(API_URL, headers=headers, json=req.get_json())
+        elif method == "DELETE":
+            r = requests.delete(API_URL, headers=headers, json=req.get_json())
+        else:
+            return func.HttpResponse("Method not allowed", status_code=405)
 
-        # Load URL and Key from environment
-        target_url = os.environ["AZURE_FUNCTION_URL"]
-        key = os.environ["AZURE_FUNCTION_KEY"]
-
-        # Forward request to the real function
-        response = requests.request(
-            method,
-            f"{target_url}?code={key}",
-            json=body
-        )
-
-        # Return the response to frontend
         return func.HttpResponse(
-            response.text,
-            status_code=response.status_code,
+            r.text,
+            status_code=r.status_code,
             mimetype="application/json"
         )
 
     except Exception as e:
-        logging.error(f"Error processing request: {str(e)}")
+        logging.error(f"Error: {e}")
         return func.HttpResponse(f"Error: {str(e)}", status_code=500)
